@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+        <Title>Google Map API</Title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
+    </head>
+<body>
+	
+	<h3>Google Map API</h3>
+	<p>ОЦ Вулик, м.Львів, в.Дж.Вашинтона 7</p>
+	
+	<div id="googleMap" style="width:50%; height:300px;"></div>
+	
+	<script>
+		function myMap() {	
+			var myLatlng = new google.maps.LatLng(49.816135, 24.070197);	
+			var mapProp = {
+				center: myLatlng,
+				zoom: 18,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};		
+			var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);	
+			
+			var marker = new google.maps.Marker({
+				position: myLatlng,
+				map: map,
+				title:"ОЦ Вулик, м.Львів, в.Дж.Вашинтона 7",
+				animation: google.maps.Animation.BOUNCE,
+				
+			});	
+			var popupContent = '<p class="content">ОЦ Вулик, м.Львів, в.Дж.Вашинтона 7</p>',
+			infowindow = new google.maps.InfoWindow({
+		            content: popupContent
+		        });	
+			infowindow.open(map, marker);	
+			marker.addListener('click', function() {
+		     		infowindow.open(map, marker);		
+			});
+		
+		}
+	</script>
+	
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmKdTGIotWxcH4ZN_9-I2bN6EHGwO7NdU&callback=myMap"></script>
+
+</body>
+</html>
